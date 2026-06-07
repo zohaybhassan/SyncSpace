@@ -8,10 +8,15 @@ const memoryStore = new Map();
 
 async function connect() {
   const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
-  client = createClient({ url: redisUrl });
+  client = createClient({
+    url: redisUrl,
+    socket: {
+      connectTimeout: 2000,
+      reconnectStrategy: false, // don't retry, fall back to memory immediately
+    },
+  });
 
-  client.on('error', (err) => {
-    if (isConnected) console.warn('[Redis] Connection lost, using in-memory fallback');
+  client.on('error', () => {
     isConnected = false;
   });
 
@@ -21,9 +26,13 @@ async function connect() {
   });
 
   try {
-    await client.connect();
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), 2000)
+    );
+    await Promise.race([client.connect(), timeout]);
   } catch (err) {
-    console.warn('[Redis] Could not connect — running with in-memory store');
+    console.warn('[Redis] Not available — running with in-memory store only');
+    try { await client.quit(); } catch {}
   }
 }
 
