@@ -2,10 +2,12 @@
   "name": "syncspace-frontend",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "node --check vite.config.js tailwind.config.js postcss.config.js src/main.js src/stores/boardStore.js src/composables/useSocket.js"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",

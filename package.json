@@ -1,0 +1,11 @@
+{
+  "name": "syncspace",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix backend ci && npm --prefix frontend ci",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "test": "npm --prefix backend run test",
+    "build": "npm --prefix frontend run build",
+    "check": "npm run lint && npm run test && npm run build"
+  }
+}
