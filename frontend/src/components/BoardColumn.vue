@@ -32,6 +32,7 @@
     <!-- Card list (draggable) -->
     <draggable
       class="flex-1 overflow-y-auto px-2 pb-2 space-y-2 min-h-[40px]"
+      :data-column-id="column.id"
       v-model="localCards"
       :group="{ name: 'cards' }"
       item-key="id"
@@ -135,16 +136,16 @@ function submitCard() {
 // Drag end — compute new position
 function onDragEnd(evt) {
   const { item, newIndex, to, from } = evt
-  const cardId = item.dataset.id || localCards.value[newIndex]?.id
+  const cardId = item?.__draggable_context?.element?.id || localCards.value[newIndex]?.id
   if (!cardId) return
 
-  const toColumnId = to.__vue_component_instance__?.props?.column?.id || props.column.id
-  const fromColumnId = from.__vue_component_instance__?.props?.column?.id || props.column.id
+  const toColumnId = to?.dataset?.columnId || props.column.id
+  const fromColumnId = from?.dataset?.columnId || props.column.id
 
   emit('move-card', {
-    cardId: localCards.value[newIndex]?.id,
-    fromColumnId: props.column.id,
-    toColumnId: props.column.id,
+    cardId,
+    fromColumnId,
+    toColumnId,
     newOrder: newIndex,
   })
 }
