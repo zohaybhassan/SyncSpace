@@ -71,13 +71,13 @@ npm --prefix frontend ci
 
 ## Running Locally
 
-Run backend:
+In one terminal, run the backend:
 
 ```bash
 npm --prefix backend run dev
 ```
 
-Run frontend:
+In another terminal, run the frontend:
 
 ```bash
 npm --prefix frontend run dev
