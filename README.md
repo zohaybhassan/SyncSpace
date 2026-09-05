@@ -85,6 +85,8 @@ npm --prefix frontend run dev
 
 Then open `http://localhost:5173`.
 
+By default, the Vite frontend uses port 5173 and the backend API uses port 3001.
+
 ## Environment Configuration
 
 ### Backend (`backend/.env`)
