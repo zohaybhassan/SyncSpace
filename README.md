@@ -46,7 +46,7 @@ SyncSpace/
 2. Frontend joins a Socket.IO room for that board.
 3. Mutations are sent as deltas and applied on the server (`boardManager.js`).
 4. Server broadcasts applied updates and presence changes to connected users.
-5. Board state is stored in Redis (24h TTL) or in-memory if Redis is unavailable.
+5. Board state is stored in Redis (24-hour TTL) or in-memory if Redis is unavailable.
 
 ## Prerequisites
 
