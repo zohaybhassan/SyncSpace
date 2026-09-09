@@ -14,7 +14,7 @@ SyncSpace is a real-time collaborative task board built with Vue 3, Node.js/Expr
 
 - **Frontend:** Vue 3, Pinia, Vite, Tailwind CSS, Socket.IO Client
 - **Backend:** Node.js, Express, Socket.IO, Redis
-- **Testing:** Node built-in test runner (`node:test`) for backend mutation logic
+- **Testing:** Node.js built-in test runner (`node:test`) for backend mutation logic
 
 ## Project Structure
 
